@@ -342,6 +342,21 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Pope commands
+local escapeTerminal = function()
+ vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true,true,true),'n',true)
+end
+vim.keymap.set('t', '<Esc>', escapeTerminal, {noremap=true})
+local centerUp = function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-u>zz', true,true,true),'n',true)
+end
+local centerDown = function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-d>zz', true,true,true),'n',true)
+end
+vim.keymap.set('n', '<C-u>', centerUp, {})
+vim.keymap.set('n', '<C-d>', centerDown, {})
+-- End of Pope commands
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
